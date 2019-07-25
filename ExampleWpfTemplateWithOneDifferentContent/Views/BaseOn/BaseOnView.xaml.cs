@@ -22,7 +22,7 @@ namespace ExampleWpfTemplateWithOneDifferentContent.Views.BaseOn
     {
         public BaseOnView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

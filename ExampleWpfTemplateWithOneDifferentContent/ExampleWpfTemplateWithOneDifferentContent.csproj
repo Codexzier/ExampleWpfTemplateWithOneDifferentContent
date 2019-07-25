@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\VisibleParameterConverter.cs" />
     <Compile Include="Views\BaseOn\BaseOnView.xaml.cs">
       <DependentUpon>BaseOnView.xaml</DependentUpon>
     </Compile>
