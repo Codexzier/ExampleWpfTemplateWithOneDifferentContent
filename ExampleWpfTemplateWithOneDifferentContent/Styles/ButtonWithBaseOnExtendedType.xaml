@@ -39,7 +39,7 @@
 
     <!-- Ellipse / ground of the Button Icon -->
     <Style x:Key="ButtonBaseEllipse" TargetType="Ellipse">
-        <Setter Property="Fill" Value="Yellow" />
+        <Setter Property="Fill" Value="DarkOrange" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="20" />
@@ -62,13 +62,15 @@
                              Height="{Binding RelativeSource={RelativeSource Self}, Path=Height}">
                         <Grid>
                             <Ellipse x:Name="ellipseBorder" Panel.ZIndex="1" Style="{StaticResource ButtonBaseEllipseWithBorder}" />
-                            <ContentControl Panel.ZIndex="2" Content="{TemplateBinding Content, Converter={StaticResource VisibleParameterConverter}, ConverterParameter=1}" />
-                            <ContentControl x:Name="pathIcon" Panel.ZIndex="3" Content="{TemplateBinding Content, Converter={StaticResource VisibleParameterConverter}, ConverterParameter=2}" />
+
+                            <ContentControl x:Name="pathIcon" Panel.ZIndex="2" Content="{TemplateBinding Content, Converter={StaticResource VisibleParameterConverter}, ConverterParameter=1}" />
+                            <ContentControl x:Name="DotInfo" Panel.ZIndex="3" Content="{TemplateBinding Content, Converter={StaticResource VisibleParameterConverter}, ConverterParameter=2}" />
                         </Grid>
                     </Viewbox>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DotInfo" Property="Background" Value="DarkOrange" />
                             <Setter TargetName="ellipseBorder" Property="Stroke" Value="DodgerBlue" />
                             <Setter TargetName="pathIcon" Property="Background" Value="DeepSkyBlue" />
                             <Setter Property="Cursor" Value="Hand" />
@@ -92,10 +94,10 @@
     <Style x:Key="ButtonOpenFile" TargetType="Button" BasedOn="{StaticResource ButtonTemplateBase}">
         <Setter Property="Content">
             <Setter.Value>
-                <DataTemplate x:Name="DataTemplateFile" DataType="Button">
+                <DataTemplate x:Name="DataTemplateFile" DataType="ContentControl">
                     <Grid x:Name="fileContent">
-                        <Path x:Uid="1" Style="{StaticResource PathIconNewStyle}" />
-                        <Ellipse x:Uid="2" Width="4" Height="4" Fill="Red" HorizontalAlignment="Right" VerticalAlignment="Bottom"  />
+                        <Path x:Uid="1" Style="{StaticResource PathIconNewStyle}" Fill="{TemplateBinding ContentControl.Background, Converter={StaticResource VisibleParameterConverter}}" />
+                        <Ellipse x:Uid="2" Width="4" Height="4" Fill="DarkRed" HorizontalAlignment="Right" VerticalAlignment="Bottom"  />
                     </Grid>
                 </DataTemplate>
             </Setter.Value>
@@ -106,7 +108,7 @@
     <Style x:Key="ButtonOpenFolder" TargetType="Button" BasedOn="{StaticResource ButtonTemplateBase}">
         <Setter Property="Content">
             <Setter.Value>
-                <DataTemplate>
+                <DataTemplate x:Name="DataTemplateFile" DataType="Button">
                     <Grid>
                         <Path x:Uid="1" Style="{StaticResource PathIconOpenFolder}" />
                         <Ellipse x:Uid="2" Width="4" Height="4" Fill="Red" HorizontalAlignment="Right" VerticalAlignment="Bottom" />

@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace ExampleWpfTemplateWithOneDifferentContent.Converters
 {
@@ -18,57 +17,37 @@ namespace ExampleWpfTemplateWithOneDifferentContent.Converters
                 return null;
             }
 
- 
-                if (value is DataTemplate content)
+
+            if (!(value is DataTemplate content))
+            {
+                return value;
+            }
+
+            if (!(content.LoadContent() is Grid grid))
+            {
+                return value;
+            }
+
+            foreach (var item in grid.Children)
+            {
+                if (!(item is FrameworkElement path))
                 {
-                    var dd = content.LoadContent();
-
-                    if (dd is Grid grid)
-                    {
-
-                        foreach (var item in grid.Children)
-                        {
-                            if (item is FrameworkElement path)
-                            {
-                                if (path.Uid.Equals(parameter))
-                                {
-                                grid.Children.Remove(path);
-                                    path.Visibility = Visibility.Visible;
-                                return path;
-                                }
-                                else
-                                {
-                                    path.Visibility = Visibility.Collapsed;
-                                }
-                            }
-                        }
-
-                    }
+                    continue;
                 }
-                //var res = this.FindVisualChildren<Path>(dd);
 
-                //if (content.DataTemplateKey is Grid grid)
-                //{
-                //    if (int.TryParse(parameter.ToString(), out int id))
-                //    {
-                //        foreach (var item in grid.Children)
-                //        {
-                //            if(item is FrameworkElement path)
-                //            {
-                //                if (path.Uid.Equals(id))
-                //                {
-                //                    path.Visibility = Visibility.Visible;
-                //                }
-                //                else
-                //                {
-                //                    path.Visibility = Visibility.Collapsed;
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
-            
-            return value;
+                if (path.Uid.Equals(parameter))
+                {
+                    grid.Children.Remove(path);
+                    path.Visibility = Visibility.Visible;
+                    return path;
+                }
+                else
+                {
+                    path.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            return grid;
         }
 
         public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -83,7 +62,7 @@ namespace ExampleWpfTemplateWithOneDifferentContent.Converters
                         yield return (T)child;
                     }
 
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    foreach (T childOfChild in this.FindVisualChildren<T>(child))
                     {
                         yield return childOfChild;
                     }
