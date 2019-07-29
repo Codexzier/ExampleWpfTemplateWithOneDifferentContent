@@ -41,7 +41,7 @@
         <Setter Property="StrokeThickness" Value="1" />
     </Style>
 
-    <!-- open folder -->
+    <!-- open file -->
     <Style x:Key="ButtonOpenFile" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
