@@ -20,6 +20,5 @@
             <Button Style="{StaticResource ButtonOpenFolder}" />
         </StackPanel>
 
-
     </Grid>
 </UserControl>

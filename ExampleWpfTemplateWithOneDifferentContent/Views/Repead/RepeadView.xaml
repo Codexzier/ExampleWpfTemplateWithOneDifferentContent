@@ -14,11 +14,10 @@
     </UserControl.Resources>
     <Grid>
 
-            <StackPanel Orientation="Horizontal" Height="50" Background="DimGray" VerticalAlignment="Top">
-                <Button Style="{StaticResource ButtonOpenFile}" />
-                <Button Style="{StaticResource ButtonOpenFolder}" />
-            </StackPanel>
-
+        <StackPanel Orientation="Horizontal" Height="50" Background="DimGray" VerticalAlignment="Top">
+            <Button Style="{StaticResource ButtonOpenFile}" />
+            <Button Style="{StaticResource ButtonOpenFolder}" />
+        </StackPanel>
 
     </Grid>
 </UserControl>

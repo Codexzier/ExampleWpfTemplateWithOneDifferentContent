@@ -50,7 +50,7 @@
         <Setter Property="StrokeThickness" Value="1" />
     </Style>
 
-
+    <!-- Base template with triggers -->
     <Style x:Key="ButtonTemplateBase" TargetType="Button">
         <Setter Property="Content" Value="{StaticResource PathIconNewStyle}" />
         <Setter Property="Template">
@@ -86,7 +86,7 @@
         </Setter>
     </Style>
 
-
+    <!-- open file -->
     <Style x:Key="ButtonOpenFile" TargetType="Button" BasedOn="{StaticResource ButtonTemplateBase}">
         <Setter Property="Content" Value="{StaticResource PathIconFile}" />
     </Style>
